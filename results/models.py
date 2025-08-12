@@ -1,0 +1,14 @@
+from django.db import models
+
+# Create your models here.
+class Result(models.Model):
+    student = models.ForeignKey('students.Student', on_delete=models.CASCADE)
+    subject = models.ForeignKey('subjects.Subject', on_delete=models.CASCADE)
+    classroom = models.ForeignKey('classrooms.Classroom', on_delete=models.CASCADE)
+    term = models.IntegerField()
+    year = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True) 
+
+    def __str__(self):
+        return f"{self.student.name} - {self.subject.name} ({self.year})"
+
