@@ -7,6 +7,8 @@ from .models import User
 
 # Register your models here.
 class UserAdmin(DefaultUserAdmin):
-    pass
+    list_display = ('id', 'username', 'email', 'role', 'is_staff', 'is_superuser')
+    search_fields = ('username', 'email')
+    ordering = ('id',)
 
 admin.site.register(User, UserAdmin)
