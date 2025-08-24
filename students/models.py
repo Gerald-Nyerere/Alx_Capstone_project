@@ -13,7 +13,7 @@ class Student(models.Model):
     admission_number = models.IntegerField(unique=True)
     gender = models.CharField(max_length=100, choices=GENDER_CHOICES)
     date_of_birth = models.DateField()
-    classroom =  models.ForeignKey(Classroom, on_delete=models.CASCADE, related_name='students' )
+    classroom =  models.ForeignKey(Classroom, on_delete=models.CASCADE, related_name='students')
     created_at = models.DateTimeField(auto_now_add=True) 
 
     def __str__(self):
