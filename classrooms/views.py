@@ -14,14 +14,14 @@ class ResultViewSet(viewsets.ModelViewSet):
 
 
     def get_permissions(self):
-        if self.action == 'list':  # GET /classroom/
-            return [IsAuthenticated(), IsAdmin() | IsTeacher()]
-        elif self.action == 'create':  # POST /classroom/
+        if self.action == 'list':  # GET /classrooms/
+            return [IsAuthenticated(), IsAdmin() or IsTeacher()]
+        elif self.action == 'create':  # POST /classrooms/
             return [IsAuthenticated(), IsAdmin()]
-        elif self.action == 'retrieve':  # GET /classroom/<id>/
-            return [IsAuthenticated(), IsAdmin() | IsTeacher()]
+        elif self.action == 'retrieve':  # GET /classrooms/<id>/
+            return [IsAuthenticated(), IsAdmin() or IsTeacher()]
         elif self.action in ['update', 'partial_update']:  # PUT /classroom/<id>/
             return [IsAuthenticated(), IsAdmin()]
-        elif self.action == 'destroy':  # DELETE /classroom/<id>/
+        elif self.action == 'destroy':  # DELETE /classrooms/<id>/
             return [IsAuthenticated(), IsAdmin()]
         return super().get_permissions()
