@@ -11,6 +11,9 @@ class Result(models.Model):
     year = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True) 
 
+    class Meta:
+        unique_together = ('student', 'subject', 'term', 'year')
+
     def __str__(self):
         return f"{self.student.name} - {self.subject.name} ({self.year})"
 

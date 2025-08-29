@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -12,7 +13,9 @@ class ResultViewSet(viewsets.ModelViewSet):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
     permission_classes = [IsAuthenticated]
-    
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['student', 'subject']
+
     def get_permissions(self):
         if self.action == 'list':  # GET /results/
             return [IsAuthenticated(), (IsAdmin() or IsTeacher())]
