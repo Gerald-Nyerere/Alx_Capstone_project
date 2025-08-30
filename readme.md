@@ -49,7 +49,7 @@ Example:
  
 Example Request
  ```json  
-      POST `http://127.0.0.1:8000/students/`       
+      POST /students/       
          {
             "name": "John james",
             "admission_number": 3457,
@@ -59,7 +59,7 @@ Example Request
             "classroom": "Grade 4"
          }
       
-      POST `http://127.0.0.1:8000/classrooms/` 
+      POST /classrooms/ 
          {
             "name": "blue",
             "grade": "Grade 4",
