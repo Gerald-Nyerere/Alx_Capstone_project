@@ -78,4 +78,4 @@ Example Request
 
 ## Author
 Gerald Nyerere  
-Email: geraldnyerer100l@gmail.com
+Email: geraldnyerere100@gmail.com
