@@ -42,12 +42,12 @@ python manage.py runserver
 - Show how to use the app, including URLs or API endpoints.
 
 Example:
-```markdown
+
 ## Usage
 - Visit `http://127.0.0.1:8000/admin` to log in as an admin.
 - Use `/students/` for managing students.
  
- 
+Example Request
  ```json  
       POST `http://127.0.0.1:8000/students/`       
          {
@@ -58,16 +58,24 @@ Example:
             "date_of_birth": "2010-05-15",
             "classroom": "Grade 4"
          }
+      
+      POST `http://127.0.0.1:8000/classrooms/` 
+         {
+            "name": "blue",
+            "grade": "Grade 4",
+            "teacher": "admin2",
+            "year": 2025
+         }
 
 
 
-## Contributing
+# Contributing
 1. Fork the repository
 2. Create a new branch (`git checkout -b feature-branch`)
 3. Commit your changes
 4. Push to your fork
 5. Submit a pull request
 
-## Author
+# Author
 Gerald Nyerere  
 Email: geraldnyerer100l@gmail.com
