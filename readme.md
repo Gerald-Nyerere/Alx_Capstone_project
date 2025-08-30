@@ -46,6 +46,20 @@ Example:
 ## Usage
 - Visit `http://127.0.0.1:8000/admin` to log in as an admin.
 - Use `/students/` for managing students.
+ 
+ 
+ ```json  
+      POST `http://127.0.0.1:8000/students/`       
+         {
+            "name": "John james",
+            "admission_number": 3457,
+            "gender": "M",
+            "subject" : "history",
+            "date_of_birth": "2010-05-15",
+            "classroom": "Grade 4"
+         }
+
+
 
 ## Contributing
 1. Fork the repository
