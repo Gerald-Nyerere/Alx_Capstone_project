@@ -1,14 +1,58 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from .models import Result
+from .forms import ResultForm
 from .serializers import ResultSerializer
 from accounts.permissions import IsTeacher, IsAdmin
 
 # Create your views here.
+# List all results
+@login_required
+def result_list_view(request):
+    # Get all results
+    results = Result.objects.select_related('student', 'subject').all()
+
+    # Organize results by student
+    student_results = {}
+    for result in results:
+        student_name = f"{result.student.name}"  
+        if student_name not in student_results:
+            student_results[student_name] = {}
+        student_results[student_name][result.subject.name] = result.score
+    
+    # Get a list of all subjects to create table headers
+    subjects = set(result.subject.name for result in results)
+    subjects = sorted(subjects)  # optional: sort alphabetically
+
+    return render(request, "results/results_list.html", {
+        "student_results": student_results,
+        "subjects": subjects
+    })
+
+# View result detail
+@login_required
+def result_detail_view(request, pk):
+    result = get_object_or_404(Result, pk=pk)
+    return render(request, "results/result_detail.html", {"result": result})
+
+# Create a new result
+@login_required
+def result_create_view(request):
+    if request.method == "POST":
+        form = ResultForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("result_list")
+    else:
+        form = ResultForm()
+    return render(request, "results/result_form.html", {"form": form})
+
+# DRF for api endpoints
 class ResultViewSet(viewsets.ModelViewSet):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer

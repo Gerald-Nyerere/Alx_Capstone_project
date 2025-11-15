@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Add Classroom{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-16 p-8 bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Add Classroom</h2>
+
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+            Save
+        </button>
+    </form>
+
+    <p class="mt-6 text-gray-600 text-center">
+        <a href="{% url 'classroom_list' %}" class="text-blue-600 hover:underline font-semibold">Back to Classrooms</a>
+    </p>
+</div>
+{% endblock %}

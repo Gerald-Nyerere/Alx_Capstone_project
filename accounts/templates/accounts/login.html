@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-16 p-8 bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-4xl font-extrabold text-gray-800 mb-8 text-center">Welcome Back!</h2>
+
+    {% if message %}
+        <div class="bg-red-100 text-red-700 px-4 py-2 rounded-lg mb-6 text-center font-medium">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form method="POST" class="space-y-6">
+        {% csrf_token %}
+        <div>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Email" 
+                class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition shadow-sm"
+                required
+            >
+        </div>
+        <div>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Password" 
+                class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition shadow-sm"
+                required
+            >
+        </div>
+        <button 
+            type="submit" 
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-full transition transform hover:scale-105 shadow-lg"
+        >
+            Login
+        </button>
+    </form>
+
+    <p class="mt-6 text-gray-600 text-center">
+        Don't have an account? 
+        <a href="{% url 'register_template' %}" class="text-green-600 hover:underline font-semibold">Register</a>
+    </p>
+</div>
+{% endblock %}

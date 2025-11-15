@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Result Detail{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto mt-16 p-8 bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Result Details</h2>
+
+    <ul class="space-y-4">
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Student:</strong> <span>{{ result.student.name }}</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Subject:</strong> <span>{{ result.subject.name }}</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Classroom:</strong> <span>{{ result.classroom.name }}</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Score:</strong> <span>{{ result.score }}%</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Remarks:</strong> <span>{{ result.remarks }}</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Term:</strong> <span>{{ result.term }}</span>
+        </li>
+        <li class="px-5 py-4 bg-gray-100 rounded-2xl flex justify-between">
+            <strong>Year:</strong> <span>{{ result.year }}</span>
+        </li>
+    </ul>
+
+    <div class="mt-8 text-center">
+        <a href="{% url 'result_list' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+            Back to List
+        </a>
+    </div>
+</div>
+{% endblock %}

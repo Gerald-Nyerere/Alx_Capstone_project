@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Student Detail{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-16 p-8 bg-gradient-to-r from-green-200 via-green-100 to-blue-100 bg-opacity-70 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6 text-center">Student Detail</h2>
+
+    <ul class="space-y-4">
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">User:</span>
+            <span>{{ student.user.username }}</span>
+        </li>
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">Name:</span>
+            <span>{{ student.name }}</span>
+        </li>
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">Admission Number:</span>
+            <span>{{ student.admission_number }}</span>
+        </li>
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">Gender:</span>
+            <span>{{ student.get_gender_display }}</span>
+        </li>
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">Date of Birth:</span>
+            <span>{{ student.date_of_birth }}</span>
+        </li>
+        <li class="px-5 py-4 bg-white bg-opacity-80 rounded-2xl shadow-sm flex justify-between items-center hover:bg-white hover:bg-opacity-90 transition cursor-pointer">
+            <span class="font-semibold text-gray-700">Classroom:</span>
+            <span>{{ student.classroom.name }}</span>
+        </li>
+    </ul>
+
+    <div class="mt-8 text-center">
+        <a href="{% url 'student_list' %}" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+            Back to List
+        </a>
+    </div>
+</div>
+{% endblock %}

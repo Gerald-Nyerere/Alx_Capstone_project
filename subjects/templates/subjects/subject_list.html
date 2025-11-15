@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Subjects{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-16 p-8 bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-4xl font-bold text-gray-800 mb-8">Subjects</h2>
+
+    <a href="{% url 'subject_create' %}" class="inline-block mb-6 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+        Add New Subject
+    </a>
+
+    <ul class="space-y-4">
+        {% for subject in subjects %}
+            <li class="px-5 py-4 bg-gray-100 rounded-2xl shadow-sm flex justify-between items-center">
+                <span>{{ subject.name }}</span>
+                <span>
+                    <a href="{% url 'subject_detail' subject.pk %}" class="text-blue-600 hover:underline font-semibold">View</a>
+                </span>
+            </li>
+        {% empty %}
+            <li class="text-gray-500">No subjects found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

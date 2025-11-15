@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load dict_extras %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-16 p-8 bg-white bg-opacity-90 backdrop-blur-md rounded-3xl shadow-xl">
+    <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Results</h2>
+
+    <a href="{% url 'result_create' %}" class="inline-block mb-6 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105">
+        Add New Result
+    </a>
+
+    {% if student_results %}
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="border px-4 py-2">Student</th>
+                {% for subject in subjects %}
+                    <th class="border px-4 py-2">{{ subject }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for student_name, results in student_results.items %}
+            <tr class="hover:bg-gray-100">
+                <td class="border px-4 py-2 font-semibold">{{ student_name }}</td>
+                {% for subject in subjects %}
+                    <td class="border px-4 py-2">
+                        {{ results|dict_get:subject|default:"-" }}
+                    </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p class="text-gray-500 text-center py-4">No results found.</p>
+    {% endif %}
+</div>
+{% endblock %}
